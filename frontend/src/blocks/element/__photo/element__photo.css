@@ -1,0 +1,13 @@
+.element__photo {
+  width: 100%;
+  height: 282px;
+  object-fit: cover;
+  border-radius: 0;
+  display: block;
+  background-color: #000;
+  color: #fff;
+}
+
+.element__photo:hover {
+  cursor: pointer;
+}

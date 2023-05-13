@@ -1,0 +1,7 @@
+.popup__union-win {
+  width: 100%;
+  height: 120px;
+  box-sizing: border-box;
+  background: url(../../../images/union-win.svg) no-repeat center;
+  margin-bottom: 32px;
+}

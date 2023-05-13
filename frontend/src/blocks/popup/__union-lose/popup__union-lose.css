@@ -1,0 +1,7 @@
+.popup__union-lose {
+  width: 100%;
+  height: 120px;
+  box-sizing: border-box;
+  background: url(../../../images/union-lose.svg) no-repeat center;
+  margin-bottom: 32px;
+}

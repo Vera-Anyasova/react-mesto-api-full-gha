@@ -1,0 +1,9 @@
+.elements {
+  max-width: 880px;
+}
+
+@media screen and (max-width: 550px) {
+  .elements {
+    column-gap: 0px;
+  }
+}
