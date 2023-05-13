@@ -4,11 +4,25 @@ const routes = require("./routes/index");
 const { errors } = require("celebrate");
 const handleErrors = require("./middlewares/handleErrors");
 const { requestLogger, errorLogger } = require("./middlewares/logger");
-const cors = require("./middlewares/cors");
+const cors = require("cors");
+const allowedCors = require("./constants");
 
 const app = express();
 
-app.use(cors());
+app.options(
+  "*",
+  cors({
+    origin: allowedCors,
+    credentials: true,
+  })
+);
+
+app.use(
+  cors({
+    origin: allowedCors,
+    credentials: true,
+  })
+);
 
 const { PORT = 3000 } = process.env;
 
