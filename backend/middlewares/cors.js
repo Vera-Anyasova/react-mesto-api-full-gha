@@ -1,6 +1,8 @@
 const allowedCors = [
   "https://vera.anyasova.students.nomoredomains.monster",
   "http://vera.anyasova.students.nomoredomains.monster",
+  "https://api.vera.anyasova.student.nomoredomains.monster",
+  "http://api.vera.anyasova.student.nomoredomains.monster",
   "localhost:3000",
 ];
 
