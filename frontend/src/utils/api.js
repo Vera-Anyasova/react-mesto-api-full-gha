@@ -83,9 +83,9 @@ class Api {
 const api = new Api({
   url: "https://api.vera.anyasova.student.nomoredomains.monster/",
   headers: {
-    authorization: "74800d66-2759-46e7-b69c-69709c21a575",
     "Content-Type": "application/json",
   },
+  credentials: "include",
 });
 
 export default api;
