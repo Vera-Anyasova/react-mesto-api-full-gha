@@ -6,6 +6,7 @@ const handleErrors = require("./middlewares/handleErrors");
 const { requestLogger, errorLogger } = require("./middlewares/logger");
 const cors = require("cors");
 const allowedCors = require("./constants");
+console.log(allowedCors);
 
 const app = express();
 
