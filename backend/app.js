@@ -4,28 +4,28 @@ const routes = require("./routes/index");
 const { errors } = require("celebrate");
 const handleErrors = require("./middlewares/handleErrors");
 const { requestLogger, errorLogger } = require("./middlewares/logger");
-// const cors = require("cors");
+const cors = require("cors");
 const allowedCors = require("./constants");
-console.log(allowedCors);
+// console.log(allowedCors);
 
 const app = express();
 
-const cors = require("./middlewares/cors");
+// const cors = require("./middlewares/cors");
 
-// app.options(
-//   "*",
-//   cors({
-//     origin: allowedCors,
-//     credentials: true,
-//   })
-// );
+app.options(
+  "*",
+  cors({
+    origin: allowedCors,
+    credentials: true,
+  })
+);
 
-// app.use(
-//   cors({
-//     origin: allowedCors,
-//     credentials: true,
-//   })
-// );
+app.use(
+  cors({
+    origin: allowedCors,
+    credentials: true,
+  })
+);
 
 const { PORT = 3000 } = process.env;
 
