@@ -66,10 +66,12 @@ function App() {
 
   const handleTokenCheck = useCallback(() => {
     const token = localStorage.getItem("token");
+    console.log(token);
     if (token) {
       auth
         .checkToken(token)
         .then((res) => {
+          console.log(res);
           setLoggedIn(true);
           setUserEmail(res.data.email);
           navigate("/", { replace: true });
