@@ -4,30 +4,34 @@ const routes = require("./routes/index");
 const { errors } = require("celebrate");
 const handleErrors = require("./middlewares/handleErrors");
 const { requestLogger, errorLogger } = require("./middlewares/logger");
-const cors = require("cors");
+// const cors = require("cors");
 const allowedCors = require("./constants");
 console.log(allowedCors);
 
 const app = express();
 
-app.options(
-  "*",
-  cors({
-    origin: allowedCors,
-    credentials: true,
-  })
-);
+const cors = require("./middlewares/cors");
 
-app.use(
-  cors({
-    origin: allowedCors,
-    credentials: true,
-  })
-);
+// app.options(
+//   "*",
+//   cors({
+//     origin: allowedCors,
+//     credentials: true,
+//   })
+// );
+
+// app.use(
+//   cors({
+//     origin: allowedCors,
+//     credentials: true,
+//   })
+// );
 
 const { PORT = 3000 } = process.env;
 
 app.use(express.json());
+
+app.use(cors());
 
 mongoose
   .connect("mongodb://127.0.0.1:27017/mestodb", {
