@@ -16,14 +16,12 @@ app.options(
   "*",
   cors({
     origin: allowedCors,
-    credentials: true,
   })
 );
 
 app.use(
   cors({
     origin: allowedCors,
-    credentials: true,
   })
 );
 
