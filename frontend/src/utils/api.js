@@ -84,6 +84,7 @@ const api = new Api({
   url: "https://api.vera.anyasova.student.nomoredomains.monster/",
   headers: {
     "Content-Type": "application/json",
+    authorization: `Bearer ${localStorage.getItem("token")}`,
   },
   credentials: "include",
 });
