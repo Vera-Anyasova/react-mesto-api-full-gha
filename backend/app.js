@@ -6,6 +6,7 @@ const cookieParser = require("cookie-parser");
 const { errors } = require("celebrate");
 const handleErrors = require("./middlewares/handleErrors");
 const { requestLogger, errorLogger } = require("./middlewares/logger");
+// const { handleCors, handleOption } = require("./middlewares/cors");
 // const allowedCors = require("./constants");
 // console.log(allowedCors);
 
@@ -31,6 +32,10 @@ const app = express();
 // );
 
 app.use(cors());
+app.options("*", cors());
+
+// app.use(handleCors());
+// app.use(handleOption());
 
 const { PORT = 3000 } = process.env;
 
