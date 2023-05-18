@@ -7,7 +7,7 @@ const { errors } = require("celebrate");
 const handleErrors = require("./middlewares/handleErrors");
 const { requestLogger, errorLogger } = require("./middlewares/logger");
 // const { handleCors, handleOption } = require("./middlewares/cors");
-// const allowedCors = require("./constants");
+const allowedCors = require("./constants");
 // console.log(allowedCors);
 
 require("dotenv").config();
