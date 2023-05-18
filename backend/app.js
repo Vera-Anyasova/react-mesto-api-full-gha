@@ -16,6 +16,14 @@ const app = express();
 
 const { PORT = 3000 } = process.env;
 
+app.options(
+  "*",
+  cors({
+    origin: "*",
+    credentials: true,
+  })
+);
+
 app.use(
   cors({
     origin: allowedCors,
@@ -29,14 +37,6 @@ app.use(
 );
 
 // const cors = require("./middlewares/cors");
-
-// app.options(
-//   "*",
-//   cors({
-//     origin: allowedCors,
-//     credentials: true,
-//   })
-// );
 
 // app.use(
 //   cors({
