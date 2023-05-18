@@ -72,13 +72,13 @@ module.exports.login = (req, res, next) => {
       );
       console.log(token);
 
-      res
-        .cookie("jwt", token, {
-          maxAge: 3600000 * 24 * 7,
-          httpOnly: true,
-          sameSite: true,
-        })
-        .send({ email });
+      res.cookie("jwt", token, {
+        maxAge: 3600000 * 24 * 7,
+        httpOnly: true,
+        sameSite: true,
+        secure: true,
+      });
+      res.send({ email });
     })
     .catch(next);
 };

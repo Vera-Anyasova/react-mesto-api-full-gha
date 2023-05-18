@@ -16,23 +16,11 @@ const app = express();
 
 const { PORT = 3000 } = process.env;
 
-// app.options(
-//   "*",
-//   cors({
-//     origin: "*",
-//     credentials: true,
-//   })
-// );
-
-app.use(
+app.options(
+  "*",
   cors({
     origin: allowedCors,
     credentials: true,
-    exposedHeaders: ["set-cookie"],
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    allowedHeaders: ["Content-Type", "Authorization"],
-    preflightContinue: false,
-    optionsSuccessStatus: 204,
   })
 );
 
@@ -40,8 +28,20 @@ app.use(
 //   cors({
 //     origin: allowedCors,
 //     credentials: true,
+//     exposedHeaders: ["set-cookie"],
+//     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+//     allowedHeaders: ["Content-Type", "Authorization"],
+//     preflightContinue: false,
+//     optionsSuccessStatus: 204,
 //   })
 // );
+
+app.use(
+  cors({
+    origin: allowedCors,
+    credentials: true,
+  })
+);
 
 // // app.options("*", cors());
 // app.use(cors());
@@ -52,7 +52,7 @@ app.use(
 app.use(express.json());
 app.use(cookieParser());
 
-app.use(cors());
+// app.use(cors());
 
 mongoose
   .connect("mongodb://127.0.0.1:27017/mestodb", {
