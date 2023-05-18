@@ -14,10 +14,13 @@ require("dotenv").config();
 
 const app = express();
 
+const { PORT = 3000 } = process.env;
+
 app.use(
   cors({
     origin: allowedCors,
     credentials: true,
+    exposedHeaders: ["set-cookie"],
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     allowedHeaders: ["Content-Type", "Authorization"],
     preflightContinue: false,
@@ -47,8 +50,6 @@ app.use(
 
 // app.use(handleCors());
 // app.use(handleOption());
-
-const { PORT = 3000 } = process.env;
 
 app.use(express.json());
 app.use(cookieParser());
