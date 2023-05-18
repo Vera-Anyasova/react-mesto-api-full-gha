@@ -3,7 +3,7 @@ const { NotFoundError, ForbiddenError } = require("../utils/errors");
 
 const updateDataCard = (req, res, updateData, next) => {
   Card.findByIdAndUpdate(req.params.cardId, updateData, { new: true })
-    .populate(["owner", "likes"])
+    // .populate(["owner", "likes"])
     .then((card) => {
       if (card) {
         // res.send({ data: card });
@@ -34,7 +34,6 @@ module.exports.createCard = (req, res, next) => {
 
 module.exports.deleteCard = (req, res, next) => {
   Card.findOneAndRemove({ _id: req.params.cardId })
-    .populate("owner")
     .orFail(() => {
       throw new NotFoundError("Карточка не найдена");
     })

@@ -65,7 +65,7 @@ function App() {
   }
 
   const handleTokenCheck = useCallback(() => {
-    const token = localStorage.getItem("loggedIn", "true");
+    const token = localStorage.getItem("loggedIn");
     if (token) {
       auth
         .checkToken()
@@ -88,7 +88,7 @@ function App() {
   function handleSignout() {
     setLoggedIn(false);
     setUserEmail("");
-    localStorage.removeItem("loggedIn", "true");
+    localStorage.removeItem("loggedIn");
   }
 
   useEffect(() => {
