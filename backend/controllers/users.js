@@ -13,8 +13,8 @@ const getDataUser = (req, res, dataUserId, next) => {
   User.findById({ _id: dataUserId })
     .then((user) => {
       if (user) {
-        // res.status(200).send(user);
-        res.status(200).send({ data: user });
+        res.status(200).send(user);
+        // res.status(200).send({ data: user });
       } else {
         throw new NotFoundError("Нет пользователя с таким id");
       }
@@ -103,8 +103,8 @@ module.exports.login = (req, res, next) => {
 
 module.exports.getUsers = (req, res, next) => {
   User.find({})
-    .then((users) => res.send({ data: users }))
-    // .then((users) => res.send(users))
+    // .then((users) => res.send({ data: users }))
+    .then((users) => res.send(users))
     .catch(next);
 };
 
