@@ -6,7 +6,8 @@ const updateDataCard = (req, res, updateData, next) => {
     .populate(["owner", "likes"])
     .then((card) => {
       if (card) {
-        res.send({ data: card });
+        // res.send({ data: card });
+        res.send(card);
       } else {
         throw new NotFoundError("Карточка не найдена");
       }
@@ -16,7 +17,8 @@ const updateDataCard = (req, res, updateData, next) => {
 
 module.exports.getCards = (req, res, next) => {
   Card.find({})
-    .then((cards) => res.send({ data: cards }))
+    // .then((cards) => res.send({ data: cards }))
+    .then((cards) => res.send(cards))
     .catch(next);
 };
 
@@ -25,7 +27,8 @@ module.exports.createCard = (req, res, next) => {
 
   Card.create({ name, link, owner: req.user._id })
     .then((card) => card.populate("owner"))
-    .then((card) => res.status(201).send({ data: card }))
+    // .then((card) => res.status(201).send({ data: card }))
+    .then((card) => res.status(201).send(card))
     .catch(next);
 };
 
@@ -36,7 +39,8 @@ module.exports.deleteCard = (req, res, next) => {
     })
     .then((card) => {
       if (card.owner._id.toString() === req.user._id) {
-        res.send({ data: card });
+        // res.send({ data: card });
+        res.send(card);
       } else {
         throw new ForbiddenError("Нет прав доступа");
       }

@@ -13,7 +13,8 @@ const getDataUser = (req, res, dataUserId, next) => {
   User.findById({ _id: dataUserId })
     .then((user) => {
       if (user) {
-        res.status(200).send({ data: user });
+        res.status(200).send(user);
+        // res.status(200).send({ data: user });
       } else {
         throw new NotFoundError("Нет пользователя с таким id");
       }
@@ -29,7 +30,8 @@ const updateDataUser = (req, res, updateData, next) => {
   })
     .then((user) => {
       if (user) {
-        res.send({ data: user });
+        // res.send({ data: user });
+        res.send(user);
       } else {
         throw new NotFoundError("Нет пользователя с таким id");
       }
@@ -43,6 +45,7 @@ module.exports.createUser = (req, res, next) => {
   bcrypt
     .hash(password, 10)
     .then((hash) => User.create({ email, password: hash, name, about, avatar }))
+    // .then((user) => res.status(201).send(user))
     .then((user) => res.status(201).send({ data: user }))
     .catch((err) => {
       if (err.code === 11000) {
@@ -75,7 +78,8 @@ module.exports.login = (req, res, next) => {
 
 module.exports.getUsers = (req, res, next) => {
   User.find({})
-    .then((users) => res.send({ data: users }))
+    // .then((users) => res.send({ data: users }))
+    .then((users) => res.send(users))
     .catch(next);
 };
 
