@@ -6,7 +6,7 @@ const cookieParser = require("cookie-parser");
 const { errors } = require("celebrate");
 const handleErrors = require("./middlewares/handleErrors");
 const { requestLogger, errorLogger } = require("./middlewares/logger");
-const allowedCors = require("./constants");
+// const allowedCors = require("./constants");
 // console.log(allowedCors);
 
 require("dotenv").config();
@@ -15,20 +15,22 @@ const app = express();
 
 // const cors = require("./middlewares/cors");
 
-app.options(
-  "*",
-  cors({
-    origin: allowedCors,
-    credentials: true,
-  })
-);
+// app.options(
+//   "*",
+//   cors({
+//     origin: allowedCors,
+//     credentials: true,
+//   })
+// );
 
-app.use(
-  cors({
-    origin: allowedCors,
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: allowedCors,
+//     credentials: true,
+//   })
+// );
+
+app.use(cors());
 
 const { PORT = 3000 } = process.env;
 
