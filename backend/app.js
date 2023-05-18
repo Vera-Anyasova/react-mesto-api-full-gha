@@ -7,7 +7,7 @@ const { errors } = require("celebrate");
 const handleErrors = require("./middlewares/handleErrors");
 const { requestLogger, errorLogger } = require("./middlewares/logger");
 // const { handleCors, handleOption } = require("./middlewares/cors");
-const allowedCors = require("./constants");
+// const allowedCors = require("./constants");
 // console.log(allowedCors);
 
 require("dotenv").config();
@@ -16,13 +16,13 @@ const app = express();
 
 const { PORT = 3000 } = process.env;
 
-app.options(
-  "*",
-  cors({
-    origin: "*",
-    credentials: true,
-  })
-);
+// app.options(
+//   "*",
+//   cors({
+//     origin: "*",
+//     credentials: true,
+//   })
+// );
 
 app.use(
   cors({
@@ -36,8 +36,6 @@ app.use(
   })
 );
 
-// const cors = require("./middlewares/cors");
-
 // app.use(
 //   cors({
 //     origin: allowedCors,
@@ -45,7 +43,7 @@ app.use(
 //   })
 // );
 
-// app.options("*", cors());
+// // app.options("*", cors());
 // app.use(cors());
 
 // app.use(handleCors());
