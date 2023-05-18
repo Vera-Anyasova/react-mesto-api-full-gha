@@ -11,6 +11,7 @@ class Api {
   getInitialCards = () => {
     return fetch(this._url + "cards", {
       headers: this._headers,
+      credentials: "include",
     }).then((res) => {
       return this._checkingResponse(res);
     });
@@ -19,6 +20,7 @@ class Api {
   getUserIfnoApi = () => {
     return fetch(this._url + "users/me", {
       headers: this._headers,
+      credentials: "include",
     }).then((res) => {
       return this._checkingResponse(res);
     });
@@ -28,6 +30,7 @@ class Api {
     return fetch(this._url + "cards/" + _id, {
       method: "DELETE",
       headers: this._headers,
+      credentials: "include",
     }).then((res) => {
       return this._checkingResponse(res);
     });
@@ -37,6 +40,7 @@ class Api {
     return fetch(this._url + "users/me", {
       method: "PATCH",
       headers: this._headers,
+      credentials: "include",
       body: JSON.stringify(name, about),
     }).then((res) => {
       return this._checkingResponse(res);
@@ -47,6 +51,7 @@ class Api {
     return fetch(this._url + "cards", {
       method: "POST",
       headers: this._headers,
+      credentials: "include",
       body: JSON.stringify(name, link),
     }).then((res) => {
       return this._checkingResponse(res);
@@ -57,6 +62,7 @@ class Api {
     return fetch(this._url + "users/me/avatar", {
       method: "PATCH",
       headers: this._headers,
+      credentials: "include",
       body: JSON.stringify({ avatar: avatar.link }),
     }).then((res) => {
       return this._checkingResponse(res);
@@ -67,6 +73,7 @@ class Api {
     return fetch(this._url + "cards/" + _id + "/likes", {
       method: isLiked ? "PUT" : "DELETE",
       headers: this._headers,
+      credentials: "include",
     }).then((res) => {
       return this._checkingResponse(res);
     });
@@ -78,6 +85,7 @@ const api = new Api({
   headers: {
     "Content-Type": "application/json",
   },
+  credentials: "include",
 });
 
 export default api;

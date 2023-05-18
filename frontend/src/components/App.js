@@ -37,8 +37,8 @@ function App() {
     auth
       .authorize(email, password)
       .then((data) => {
-        if (data.token) {
-          localStorage.setItem("token", data.token);
+        if (data) {
+          localStorage.setItem("loggedIn", "true");
           setLoggedIn(true);
           setUserEmail(data.email);
           navigate("/", { replace: true });
@@ -65,11 +65,10 @@ function App() {
   }
 
   const handleTokenCheck = useCallback(() => {
-    const token = localStorage.getItem("token");
-    console.log(token);
+    const token = localStorage.getItem("loggedIn", "true");
     if (token) {
       auth
-        .checkToken(token)
+        .checkToken()
         .then((res) => {
           console.log(res);
           setLoggedIn(true);
@@ -89,7 +88,7 @@ function App() {
   function handleSignout() {
     setLoggedIn(false);
     setUserEmail("");
-    localStorage.removeItem("token");
+    localStorage.removeItem("loggedIn", "true");
   }
 
   useEffect(() => {

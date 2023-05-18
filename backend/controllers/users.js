@@ -30,8 +30,8 @@ const updateDataUser = (req, res, updateData, next) => {
   })
     .then((user) => {
       if (user) {
-        res.send({ data: user });
-        // res.send(user);
+        // res.send({ data: user });
+        res.send(user);
       } else {
         throw new NotFoundError("Нет пользователя с таким id");
       }
@@ -63,18 +63,43 @@ module.exports.login = (req, res, next) => {
 
   return User.findUserByCredentials(email, password)
     .then((user) => {
-      res.send({
-        token: jwt.sign(
-          { _id: user._id },
-          NODE_ENV === "production" ? JWT_SECRET : "jwt-secret",
-          {
-            expiresIn: "7d",
-          }
-        ),
-      });
+      const token = jwt.sign(
+        { _id: user._id },
+        NODE_ENV === "production" ? JWT_SECRET : "jwt-secret",
+        {
+          expiresIn: "7d",
+        }
+      );
+      console.log(token);
+
+      res
+        .cookie("jwt", token, {
+          maxAge: 3600000 * 24 * 7,
+          httpOnly: true,
+          sameSite: true,
+        })
+        .send({ email });
     })
     .catch(next);
 };
+
+// module.exports.login = (req, res, next) => {
+//   const { email, password } = req.body;
+
+//   return User.findUserByCredentials(email, password)
+//     .then((user) => {
+//       res.send({
+//         token: jwt.sign(
+//           { _id: user._id },
+//           NODE_ENV === "production" ? JWT_SECRET : "jwt-secret",
+//           {
+//             expiresIn: "7d",
+//           }
+//         ),
+//       });
+//     })
+//     .catch(next);
+// };
 
 module.exports.getUsers = (req, res, next) => {
   User.find({})
