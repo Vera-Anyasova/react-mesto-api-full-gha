@@ -34,6 +34,7 @@ module.exports.createCard = (req, res, next) => {
 
 module.exports.deleteCard = (req, res, next) => {
   Card.findOneAndRemove({ _id: req.params.cardId })
+    .populate("owner")
     .orFail(() => {
       throw new NotFoundError("Карточка не найдена");
     })
