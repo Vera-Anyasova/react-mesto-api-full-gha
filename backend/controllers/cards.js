@@ -3,6 +3,7 @@ const { NotFoundError, ForbiddenError } = require("../utils/errors");
 
 module.exports.getCards = (req, res, next) => {
   Card.find({})
+    .populate("owner")
     // .then((cards) => res.send({ data: cards }))
     .then((cards) => res.send(cards))
     .catch(next);
