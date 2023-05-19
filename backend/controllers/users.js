@@ -70,15 +70,14 @@ module.exports.login = (req, res, next) => {
           expiresIn: "7d",
         }
       );
-      console.log(token);
 
       res.cookie("jwt", token, {
         maxAge: 3600000 * 24 * 7,
         httpOnly: true,
-        sameSite: true,
+        // sameSite: true,
         // secure: true,
       });
-      res.send({ email });
+      res.send({ _id: user._id });
     })
     .catch(next);
 };
