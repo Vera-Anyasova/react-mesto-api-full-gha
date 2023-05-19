@@ -10,8 +10,8 @@
 
 ## Ссылки на проект
 
-IP-адрес 51.250.88.144
+IP 51.250.88.144
 
-Frontend https://vera.anyasova.students.nomoredomains.monster
+Frontend <https://vera.anyasova.students.nomoredomains.monster>
 
-Backend https://api.vera.anyasova.student.nomoredomains.monster
+Backend <https://api.vera.anyasova.student.nomoredomains.monster>
