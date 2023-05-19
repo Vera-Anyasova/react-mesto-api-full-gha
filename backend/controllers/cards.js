@@ -26,9 +26,10 @@ module.exports.createCard = (req, res, next) => {
   const { name, link } = req.body;
 
   Card.create({ name, link, owner: req.user._id })
-    .then((card) => card.populate("owner"))
+    // .then((card) => card.populate("owner"))
     // .then((card) => res.status(201).send({ data: card }))
     .then((card) => res.status(201).send(card))
+    // .then((card) => card.populate("owner"))
     .catch(next);
 };
 
