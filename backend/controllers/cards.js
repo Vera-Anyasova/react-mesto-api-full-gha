@@ -3,7 +3,7 @@ const { NotFoundError, ForbiddenError } = require("../utils/errors");
 
 const updateDataCard = (req, res, updateData, next) => {
   Card.findByIdAndUpdate(req.params.cardId, updateData, { new: true })
-    .populate(["owner", "likes"])
+    // .populate(["owner", "likes"])
     .then((card) => {
       if (card) {
         // res.send({ data: card });
@@ -29,7 +29,7 @@ module.exports.createCard = (req, res, next) => {
     // .then((card) => card.populate("owner"))
     // .then((card) => res.status(201).send({ data: card }))
     .then((card) => res.status(201).send(card))
-    .then((card) => card.populate("owner"))
+    // .then((card) => card.populate("owner"))
     .catch(next);
 };
 
