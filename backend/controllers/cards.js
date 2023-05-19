@@ -1,21 +1,6 @@
 const Card = require("../models/card");
 const { NotFoundError, ForbiddenError } = require("../utils/errors");
 
-const updateDataCard = (req, res, updateData, next) => {
-  Card.findByIdAndUpdate(req.params.cardId, updateData, { new: true })
-    // .populate(["likes"])
-    .populate(["owner", "likes"])
-    .then((card) => {
-      if (card) {
-        // res.send({ data: card });
-        res.send(card);
-      } else {
-        throw new NotFoundError("Карточка не найдена");
-      }
-    })
-    .catch(next);
-};
-
 module.exports.getCards = (req, res, next) => {
   Card.find({})
     // .then((cards) => res.send({ data: cards }))
@@ -27,16 +12,15 @@ module.exports.createCard = (req, res, next) => {
   const { name, link } = req.body;
 
   Card.create({ name, link, owner: req.user._id })
+    .then((card) => card.populate("owner"))
     // .then((card) => card.populate("owner"))
     // .then((card) => res.status(201).send({ data: card }))
     .then((card) => res.status(201).send(card))
-    .then((card) => card.populate("owner"))
     .catch(next);
 };
 
 module.exports.deleteCard = (req, res, next) => {
   Card.findOneAndRemove({ _id: req.params.cardId })
-    .populate("owner")
     .orFail(() => {
       throw new NotFoundError("Карточка не найдена");
     })
@@ -51,6 +35,21 @@ module.exports.deleteCard = (req, res, next) => {
     .catch((err) => {
       next(err);
     });
+};
+
+const updateDataCard = (req, res, updateData, next) => {
+  Card.findByIdAndUpdate(req.params.cardId, updateData, { new: true })
+    // .populate(["likes"])
+    .populate(["owner", "likes"])
+    .then((card) => {
+      if (card) {
+        // res.send({ data: card });
+        res.send(card);
+      } else {
+        throw new NotFoundError("Карточка не найдена");
+      }
+    })
+    .catch(next);
 };
 
 module.exports.addLike = (req, res, next) => {
