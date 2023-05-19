@@ -24,24 +24,24 @@ app.options(
   })
 );
 
-// app.use(
-//   cors({
-//     origin: allowedCors,
-//     credentials: true,
-//     exposedHeaders: ["set-cookie"],
-//     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-//     allowedHeaders: ["Content-Type", "Authorization"],
-//     preflightContinue: false,
-//     optionsSuccessStatus: 204,
-//   })
-// );
-
 app.use(
   cors({
     origin: allowedCors,
     credentials: true,
+    exposedHeaders: ["set-cookie"],
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    allowedHeaders: ["Content-Type", "Authorization"],
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
   })
 );
+
+// app.use(
+//   cors({
+//     origin: allowedCors,
+//     credentials: true,
+//   })
+// );
 
 // // app.options("*", cors());
 // app.use(cors());
