@@ -6,12 +6,12 @@
 
 Пожалуйста, прикрепите в это описание ссылку на сайт, размещенный на Яндекс.Облаке.
 
-Адрес репозитория: https://github.com/...
+Адрес репозитория: https://github.com/Vera-Anyasova/react-mesto-api-full-gha.git
 
 ## Ссылки на проект
 
-IP-адрес x.x.x.x
+IP-адрес 51.250.88.144
 
-Frontend https://...
+Frontend https://vera.anyasova.students.nomoredomains.monster
 
-Backend https://...
+Backend https://api.vera.anyasova.student.nomoredomains.monster

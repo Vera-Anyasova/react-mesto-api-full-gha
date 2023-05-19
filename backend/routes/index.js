@@ -9,6 +9,12 @@ const {
 } = require("../middlewares/validation");
 const { NotFoundError } = require("../utils/errors");
 
+router.get("/crash-test", () => {
+  setTimeout(() => {
+    throw new Error("Сервер сейчас упадёт");
+  }, 0);
+});
+
 router.post("/signup", registerValidation, createUser);
 router.post("/signin", loginValidation, login);
 
