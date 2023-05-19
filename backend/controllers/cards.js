@@ -3,8 +3,8 @@ const { NotFoundError, ForbiddenError } = require("../utils/errors");
 
 const updateDataCard = (req, res, updateData, next) => {
   Card.findByIdAndUpdate(req.params.cardId, updateData, { new: true })
-    .populate(["likes"])
-    // .populate(["owner", "likes"])
+    // .populate(["likes"])
+    .populate(["owner", "likes"])
     .then((card) => {
       if (card) {
         // res.send({ data: card });
