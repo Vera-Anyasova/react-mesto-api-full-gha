@@ -70,7 +70,6 @@ function App() {
       auth
         .checkToken()
         .then((res) => {
-          console.log(res);
           setLoggedIn(true);
           setUserEmail(res.email);
           navigate("/", { replace: true });
@@ -97,7 +96,6 @@ function App() {
         .getInitialCards()
         .then((res) => {
           setCards(res);
-          console.log(res);
         })
         .catch((err) => {
           console.log(err);
@@ -111,7 +109,6 @@ function App() {
         .getUserIfnoApi()
         .then((res) => {
           setCurrentUser(res);
-          console.log(res);
         })
         .catch((err) => {
           console.log(err);
