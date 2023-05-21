@@ -1,9 +1,9 @@
 // const mongoose = require("mongoose");
-const { BadRequestError } = require("../utils/errors/bad-request-error");
-const { UnauthorizedError } = require("../utils/errors/unauthorized-error");
-const { ForbiddenError } = require("../utils/errors/forbidden-error");
-const { NotFoundError } = require("../utils/errors/not-found-err");
-const { ConflictError } = require("../utils/errors/conflict-error");
+const BadRequestError = require("../utils/errors/bad-request-error");
+const UnauthorizedError = require("../utils/errors/unauthorized-error");
+const ForbiddenError = require("../utils/errors/forbidden-error");
+const NotFoundError = require("../utils/errors/not-found-err");
+const ConflictError = require("../utils/errors/conflict-error");
 
 const handleErrors = (err, req, res, next) => {
   if (this instanceof BadRequestError) {
