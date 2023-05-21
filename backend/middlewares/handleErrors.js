@@ -1,4 +1,3 @@
-// const mongoose = require("mongoose");
 const BadRequestError = require("../utils/errors/bad-request-error");
 const UnauthorizedError = require("../utils/errors/unauthorized-error");
 const ForbiddenError = require("../utils/errors/forbidden-error");
@@ -43,25 +42,3 @@ const handleErrors = (err, req, res, next) => {
 };
 
 module.exports = handleErrors;
-
-// const handleErrors = (err, req, res, next) => {
-//   if (err instanceof GeneralError) {
-//     return res.status(err.checkError()).send({
-//       status: console.log(err),
-//       message: err.message,
-//     });
-//   }
-
-//   if (
-//     err instanceof mongoose.Error.CastError ||
-//     err instanceof mongoose.Error.ValidationError
-//   ) {
-//     res
-//       .status(BadRequestError)
-//       .send({ message: "Сlient sent an invalid request" });
-//   }
-
-//   return res.status(500).send({
-//     message: "На сервере произошла ошибка",
-//   });
-// };
