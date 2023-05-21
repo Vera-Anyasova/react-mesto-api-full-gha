@@ -23,10 +23,10 @@ module.exports.deleteCard = (req, res, next) => {
       throw new NotFoundError("Карточка не найдена");
     })
     .then((card) => {
-      if (!card.owner._id.toString() === req.user._id) {
-        next(new ForbiddenError('"Нет прав доступа"'));
-      } else {
+      if (card.owner._id.toString() === req.user._id) {
         return Card.deleteOne(card).then(() => res.send(card));
+      } else {
+        throw new ForbiddenError("Нет прав доступа");
       }
     })
     .catch(next);
