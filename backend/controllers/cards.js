@@ -18,20 +18,18 @@ module.exports.createCard = (req, res, next) => {
 };
 
 module.exports.deleteCard = (req, res, next) => {
-  Card.findOneAndRemove({ _id: req.params.cardId })
+  Card.findById({ _id: req.params.cardId })
     .orFail(() => {
       throw new NotFoundError("Карточка не найдена");
     })
     .then((card) => {
-      if (card.owner._id.toString() === req.user._id) {
-        res.send(card);
+      if (!card.owner._id.toString() === req.user._id) {
+        next(new ForbiddenError('"Нет прав доступа"'));
       } else {
-        throw new ForbiddenError("Нет прав доступа");
+        return Card.deleteOne(card).then(() => res.send(card));
       }
     })
-    .catch((err) => {
-      next(err);
-    });
+    .catch(next);
 };
 
 const updateDataCard = (req, res, updateData, next) => {
