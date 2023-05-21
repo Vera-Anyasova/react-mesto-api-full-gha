@@ -3,26 +3,26 @@ const BadRequestError = require("../utils/errors/bad-request-error");
 const UnauthorizedError = require("../utils/errors/unauthorized-error");
 const ForbiddenError = require("../utils/errors/forbidden-error");
 const NotFoundError = require("../utils/errors/not-found-err");
-const ConflictError = require("../utils/errors/conflict-error");
+// const ConflictError = require("../utils/errors/conflict-error");
 
 const handleErrors = (err, req, res, next) => {
-  if (this instanceof BadRequestError) {
+  if (err instanceof BadRequestError) {
     res.status(STATUS_BAD_REQUEST).send({ message: err.message });
     return;
   }
-  if (this instanceof UnauthorizedError) {
+  if (err instanceof UnauthorizedError) {
     res.status(STATUS_UNAUTHORIZED).send({ message: err.message });
     return;
   }
-  if (this instanceof ForbiddenError) {
+  if (err instanceof ForbiddenError) {
     res.status(STATUS_FORBIDDEN).send({ message: err.message });
     return;
   }
-  if (this instanceof NotFoundError) {
+  if (err instanceof NotFoundError) {
     res.status(STATUS_NOT_FOUND).send({ message: err.message });
     return;
   }
-  if (this instanceof ConflictError) {
+  if (err.code === 11000) {
     res.status(STATUS_CONFLICT).send({ message: err.message });
     return;
   }
