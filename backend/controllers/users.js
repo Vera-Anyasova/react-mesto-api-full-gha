@@ -3,8 +3,9 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 const { NODE_ENV, JWT_SECRET } = require("../config");
 const NotFoundError = require("../utils/errors/not-found-error");
-const ConflictError = require("../utils/errors/conflict-error");
+// const ConflictError = require("../utils/errors/conflict-error");
 const BadRequestError = require("../utils/errors/bad-request-error");
+const { STATUS_CONFLICT } = require("../constants");
 
 // const {
 //   NotFoundError,
@@ -49,7 +50,10 @@ module.exports.createUser = (req, res, next) => {
     .then((user) => res.status(201).send({ data: user }))
     .catch((err) => {
       if (err.code === 11000) {
-        next(new ConflictError("Указанный email уже существует"));
+        // next(new ConflictError("Указанный email уже существует"));
+        return res
+          .status(STATUS_CONFLICT)
+          .send("Указанный email уже существует");
       } else if (err.name === "ValidationError") {
         next(new BadRequestError("Произошла ошибка валидации"));
       } else {
