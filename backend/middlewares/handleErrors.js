@@ -2,8 +2,16 @@
 const BadRequestError = require("../utils/errors/bad-request-error");
 const UnauthorizedError = require("../utils/errors/unauthorized-error");
 const ForbiddenError = require("../utils/errors/forbidden-error");
-const NotFoundError = require("../utils/errors/not-found-err");
+const NotFoundError = require("../utils/errors/not-found-error");
 const ConflictError = require("../utils/errors/conflict-error");
+const {
+  STATUS_BAD_REQUEST,
+  STATUS_UNAUTHORIZED,
+  STATUS_FORBIDDEN,
+  STATUS_NOT_FOUND,
+  STATUS_CONFLICT,
+  STATUS_INTERNAL_SERVER_ERROR,
+} = require("../constants");
 
 const handleErrors = (err, req, res, next) => {
   if (err instanceof BadRequestError) {
