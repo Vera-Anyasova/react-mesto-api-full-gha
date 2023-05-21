@@ -7,7 +7,7 @@ const {
   registerValidation,
   loginValidation,
 } = require("../middlewares/validation");
-const { NotFoundError } = require("../utils/errors/not-found-error");
+const NotFoundError = require("../utils/errors/not-found-error");
 
 router.get("/crash-test", () => {
   setTimeout(() => {
