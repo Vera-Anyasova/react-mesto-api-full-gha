@@ -9,10 +9,9 @@ const { requestLogger, errorLogger } = require("./middlewares/logger");
 const allowedCors = require("./constants");
 
 require("dotenv").config();
+const { PORT, MONGODB_URI } = require("./config");
 
 const app = express();
-
-const { PORT = 3000 } = process.env;
 
 app.options(
   "*",
@@ -38,7 +37,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 mongoose
-  .connect("mongodb://127.0.0.1:27017/mestodb", {
+  .connect(MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
